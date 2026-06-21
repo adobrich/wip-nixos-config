@@ -1,5 +1,5 @@
 {
-disko.devices = {
+  disko.devices = {
     disk = {
       system = {
         type = "disk";
@@ -107,7 +107,7 @@ disko.devices = {
             type = "zfs_fs";
             mountpoint = "/persist";
             options = {
-            #canmount = "on";
+              #canmount = "on";
               "com.sun:auto-snapshot" = "true";
             };
           };

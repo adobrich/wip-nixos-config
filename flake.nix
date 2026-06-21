@@ -12,10 +12,10 @@
     preservation.url = "github:nix-community/preservation";
   };
 
-  outputs = { flakelight, ... }@inputs: {
+  outputs = { flakelight, ... }@inputs:
     flakelight ./. {
       systems = [ "x86_64-linux" "aarch64-linux" ];
       inherit inputs;
-  };
+    };
 }
 

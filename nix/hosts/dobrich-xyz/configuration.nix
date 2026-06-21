@@ -7,7 +7,7 @@ nixpkgs.lib.nixosSystem {
     ./hardware-configuration.nix
     ./disko-configuration.nix
     ({ pkgs, ... }: {
-      
+
       # ZFS specific settings
       boot.supportedFilesystems = [ "zfs" ];
       boot.zfs.devNodes = "/dev/disk/by-id";
