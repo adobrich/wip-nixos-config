@@ -7,14 +7,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flakelight.url = "github:nix-community/flakelight";
+    flakelight = {
+      url = "github:nix-community/flakelight";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     preservation.url = "github:nix-community/preservation";
   };
 
   outputs = { flakelight, ... }@inputs:
     flakelight ./. {
-      systems = [ "x86_64-linux" "aarch64-linux" ];
       inherit inputs;
     };
 }
