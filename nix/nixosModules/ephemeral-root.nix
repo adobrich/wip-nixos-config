@@ -12,6 +12,7 @@
         "/var/lib/systemd/timers"
         "/var/lib/nixos"
         "var/log"
+        "/etc/NetworkManager/system-connections"
       ];
 
       users = {
@@ -35,5 +36,5 @@
     };
   };
 
-  systemd.supressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+  systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
 }

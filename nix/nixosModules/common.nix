@@ -1,7 +1,7 @@
 { inputs, pkgs, lib, ... }:
 {
   imports = [
-    # TODO: preservation
+    inputs.preservation.nixosModules.preservation
     # TODO: home management?
   ];
 

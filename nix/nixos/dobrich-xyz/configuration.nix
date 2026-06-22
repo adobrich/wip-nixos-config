@@ -3,6 +3,7 @@
   imports = [
     inputs.disko.nixosModules.disko
     inputs.self.nixosModules.common
+    inputs.self.nixosModules.ephemeral-root
 
     ./hardware-configuration.nix
     ./disko-configuration.nix
