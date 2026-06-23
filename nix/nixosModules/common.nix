@@ -1,7 +1,6 @@
-{ inputs, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   imports = [
-    inputs.preservation.nixosModules.preservation
     # TODO: home management?
   ];
 
@@ -13,6 +12,33 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user
     packages = with pkgs; [
       tree
+      nixd
+      nixfmt
     ];
+  };
+
+  hjem.users.andy = {
+    user = "andy";
+    directory = "/home/andy";
+
+    files = {
+      ".config/helix/languages.toml" = {
+        generator = (pkgs.formats.toml { }).generate "languages.toml";
+        value = {
+          language = [{
+            name = "nix";
+            auto-format = true;
+            formatter = { command = "nixfmt"; };
+            language-servers = [ "nixd" ];
+          }];
+          language-server = {
+            nixd = {
+              command = "nixd";
+              args = [ "--semantic-tokens=true" ];
+            };
+          };
+        };
+      };
+    };
   };
 }

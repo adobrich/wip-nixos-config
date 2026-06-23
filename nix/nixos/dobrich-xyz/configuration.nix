@@ -1,9 +1,10 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     inputs.disko.nixosModules.disko
     inputs.self.nixosModules.common
     inputs.self.nixosModules.ephemeral-root
+    inputs.hjem.nixosModules.default
 
     ./hardware-configuration.nix
     ./disko-configuration.nix
@@ -22,7 +23,10 @@
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
     };
 

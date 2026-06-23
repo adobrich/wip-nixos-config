@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ inputs, ... }:
 {
+  imports = [
+    inputs.preservation.nixosModules.preservation
+  ];
+
   preservation = {
     enable = true;
     preserveAt."/persist" = {
+      commonMountOptions = [ "x-gvfs-hide" "x-gdu.hide" ];
+
       files = [
         { file = "/etc/machine-id"; inInitrd = true; }
       ];
