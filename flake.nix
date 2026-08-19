@@ -20,9 +20,9 @@
     preservation.url = "github:nix-community/preservation";
   };
 
-  outputs = { flakelight, ... }@inputs:
+  outputs =
+    { flakelight, ... }@inputs:
     flakelight ./. {
       inherit inputs;
     };
 }
-

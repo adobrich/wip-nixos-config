@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }:
+{ inputs
+, pkgs
+, lib
+, ...
+}:
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -57,6 +61,7 @@
     helix
     wget
     zfs
+    harper
   ];
 
   system.stateVersion = "26.05";

@@ -25,16 +25,40 @@
       ".config/helix/languages.toml" = {
         generator = (pkgs.formats.toml { }).generate "languages.toml";
         value = {
-          language = [{
-            name = "nix";
-            auto-format = true;
-            formatter = { command = "nixfmt"; };
-            language-servers = [ "nixd" ];
-          }];
+          language = [
+            {
+              name = "nix";
+              auto-format = true;
+              formatter = {
+                command = "nixfmt";
+              };
+              language-servers = [
+                "nixd"
+                "harper-ls"
+              ];
+            }
+            {
+              name = "git-commit";
+              language-servers = [ "harper-ls" ];
+            }
+            {
+              name = "markdown";
+              language-servers = [
+                "marksman"
+                "harper-ls"
+              ];
+            }
+          ];
           language-server = {
             nixd = {
               command = "nixd";
               args = [ "--semantic-tokens=true" ];
+            };
+          };
+          language-server = {
+            harper-ls = {
+              command = "harper-ls";
+              args = [ "--stdio" ];
             };
           };
         };
