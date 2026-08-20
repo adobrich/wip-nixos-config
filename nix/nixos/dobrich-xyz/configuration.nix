@@ -1,7 +1,8 @@
-{ inputs
-, pkgs
-, lib
-, ...
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
 }:
 {
   imports = [
@@ -45,7 +46,7 @@
   networking.hostName = "dobrich-xyz";
   networking.networkmanager.enable = true;
 
-  time.timeZone = "Melbourne/Australia";
+  time.timeZone = "Australia/Melbourne";
   i18n.defaultLocale = "en_AU.UTF-8";
 
   services.openssh.enable = true;
