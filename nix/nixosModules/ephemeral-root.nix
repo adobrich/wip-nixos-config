@@ -48,6 +48,8 @@
         {
           file = "/etc/machine-id";
           inInitrd = true;
+          how = "symlink";
+          configureParent = true;
         }
       ];
 
@@ -55,7 +57,7 @@
         "/var/lib/bluetooth"
         "/var/lib/systemd/timers"
         "/var/lib/nixos"
-        "var/log"
+        "/var/log"
         "/etc/NetworkManager/system-connections"
         "/etc/ssh"
       ];
@@ -73,19 +75,19 @@
             }
           ];
         };
-
-        # root = {
-        #   home = "/root";
-        #   directories = [
-        #     {
-        #       directory = ".ssh";
-        #       mode = "0700";
-        #     }
-        #   ];
-        # };
       };
     };
   };
 
+  systemd.services.systemd-machine-id-commit = {
+    unitConfig.ConditionPathIsMountPoint = [
+      ""
+      "/persist/etc/machine-id"
+    ];
+    serviceConfig.ExecStart = [
+      ""
+      "systemd-machine-id-setup --commit --root /persist"
+    ];
+  };
   # systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
 }
