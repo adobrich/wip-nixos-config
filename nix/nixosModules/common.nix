@@ -22,6 +22,16 @@
     directory = "/home/andy";
 
     files = {
+      ".config/helix/config.toml" = {
+        generator = (pkgs.formats.toml { }).generate "config.toml";
+        value = {
+          theme = "catppuccin_mocha";
+          editor = {
+            true-color = true;
+            line-number = "relative";
+          };
+        };
+      };
       ".config/helix/languages.toml" = {
         generator = (pkgs.formats.toml { }).generate "languages.toml";
         value = {

@@ -1,9 +1,7 @@
 /*
   module: ephemeral-root.nix
-  description: Using a blank ZFS snapshot, wave goodbye to last boot's root
-               and hello to a brand new one populated with only the things we want...
-               Unless you forgot to persist it, in which case it's gone.
-               Just gone - but it's okay, you'll do better next time! Hang in there!
+  prerequisites: ZFS on root, blank snapshot at `rpool/local/root@blank`
+  description:
 */
 { inputs, pkgs, ... }:
 {
@@ -28,14 +26,13 @@
   };
 
   # Prevent sudo from lecturing after each boot.
-  # I promise I'll be good! Don't remind me again.
+  # I promise I'll be good!
   security.sudo = {
     extraConfig = ''
       Defaults lecture=never
     '';
   };
 
-  # All the things we care about. Didn't forget anything, right?
   preservation = {
     enable = true;
     preserveAt."/persist" = {
