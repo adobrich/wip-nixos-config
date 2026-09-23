@@ -6,9 +6,10 @@
 {
   imports = [
     inputs.disko.nixosModules.disko
+    inputs.hjem.nixosModules.default
+
     inputs.self.nixosModules.common
     inputs.self.nixosModules.ephemeral-root
-    inputs.hjem.nixosModules.default
 
     ./hardware-configuration.nix
     ./disko-configuration.nix

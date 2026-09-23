@@ -3,7 +3,7 @@
     disk = {
       system = {
         type = "disk";
-        device = "/dev/disk/by-id/virtio-1";
+        device = "/dev/disk/by-id/xxx";
         content = {
           type = "gpt";
           partitions = {
@@ -41,27 +41,25 @@
         type = "zpool";
         rootFsOptions = {
           acltype = "posixacl";
-          #canmount = "off";
           xattr = "sa";
+          atime = "off";
           normalization = "formD";
-          #mountpoint = "none";
-          compression = "zstd";
+          compression = "lz4";
+          canmount = "off";
+          dnodesize = "auto";
+          mountpoint = "none";
           "com.sun:auto-snapshot" = "false";
         };
         options = {
-          #ashift = "12";
+          ashift = "12";
           autotrim = "on";
         };
         datasets = {
           local = {
             type = "zfs_fs";
-            options.mountpoint = "none"; # testing
-            options.canmount = "off"; # testing
           };
           safe = {
             type = "zfs_fs";
-            options.mountpoint = "none"; # testing
-            options.canmount = "off"; # testing
           };
           "local/root" = {
             type = "zfs_fs";
@@ -74,8 +72,6 @@
             type = "zfs_fs";
             mountpoint = "/nix";
             options = {
-              atime = "off";
-              #canmount = "on";
               "com.sun:auto-snapshot" = "true";
             };
           };
@@ -83,32 +79,23 @@
             type = "zfs_fs";
             mountpoint = "/home";
             options = {
-              #canmount = "on";
               "com.sun:auto-snapshot" = "true";
-            };
-          };
-          "safe/steam" = {
-            type = "zfs_fs";
-            mountpoint = "/mnt/games";
-            # Need to target `/mnt` since that is where the initial nixos install happens
-            postMountHook = ''
-              groupadd -f gaming
-              chown -R :gaming /mnt/disko-install-root/mnt/games
-              chmod g+rwx /mnt/disko-install-root/mnt/games
-              chmod g+s /mnt/disko-install-root/mnt/games
-            '';
-            options = {
-              casesensitivity = "insensitive";
-              quota = "1T"; # Steam 0mb available bug
-              recordsize = "1M";
             };
           };
           "safe/persist" = {
             type = "zfs_fs";
             mountpoint = "/persist";
             options = {
-              #canmount = "on";
               "com.sun:auto-snapshot" = "true";
+            };
+            "local/steam" = {
+              type = "zfs_fs";
+              mountpoint = "/home/andy/games";
+              options = {
+                casesensitivity = "insensitive";
+                # quota = "1T"; # Steam 0mb available bug
+                recordsize = "1M";
+              };
             };
           };
         };
