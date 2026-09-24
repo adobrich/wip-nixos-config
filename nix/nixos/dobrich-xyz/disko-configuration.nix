@@ -88,14 +88,14 @@
             options = {
               "com.sun:auto-snapshot" = "true";
             };
-            "local/steam" = {
-              type = "zfs_fs";
-              mountpoint = "/home/andy/games";
-              options = {
-                casesensitivity = "insensitive";
-                # quota = "1T"; # Steam 0mb available bug
-                recordsize = "1M";
-              };
+          };
+          "local/steam" = {
+            type = "zfs_fs";
+            mountpoint = "/home/andy/games";
+            options = {
+              casesensitivity = "insensitive";
+              # quota = "1T"; # Steam 0mb available bug
+              recordsize = "1M";
             };
           };
         };
