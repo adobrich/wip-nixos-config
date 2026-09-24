@@ -45,8 +45,8 @@
         {
           file = "/etc/machine-id";
           inInitrd = true;
-          how = "symlink";
-          configureParent = true;
+          #how = "symlink";
+          #configureParent = true;
         }
       ];
 
@@ -77,15 +77,15 @@
     };
   };
 
-  systemd.services.systemd-machine-id-commit = {
-    unitConfig.ConditionPathIsMountPoint = [
-      ""
-      "/persist/etc/machine-id"
-    ];
-    serviceConfig.ExecStart = [
-      ""
-      "systemd-machine-id-setup --commit --root /persist"
-    ];
-  };
-  # systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+  #systemd.services.systemd-machine-id-commit = {
+  #  unitConfig.ConditionPathIsMountPoint = [
+  #    ""
+  #    "/persist/etc/machine-id"
+  #  ];
+  #  serviceConfig.ExecStart = [
+  #   ""
+  #   "systemd-machine-id-setup --commit --root /persist"
+  # ];
+  #};
+  systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
 }
