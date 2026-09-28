@@ -9,6 +9,7 @@
 
     inputs.self.nixosModules.common
     inputs.self.nixosModules.ephemeral-root
+    inputs.self.nixosModules.git
 
     ./hardware-configuration.nix
     ./disko-configuration.nix

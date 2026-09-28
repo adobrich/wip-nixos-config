@@ -1,0 +1,35 @@
+[user]
+  name = Andrew Dobrich
+  email = andrew.dobrich@protonmail.com
+
+[init]
+  defaultBranch = main
+
+[core]
+  editor = hx
+  autocrlf = false
+  eol = true;
+  help = autoCorrect
+
+[push]
+  default = simple
+  forceWithLease = true
+  autoSetupRemote = true
+
+[pull]
+  ff = only
+
+[branch]
+  sort = -committerdate
+
+[column]
+  ui = auto
+
+[commit]
+  verbose = true
+
+[diff]
+  colorMoved = true
+
+[tag]
+  sort = -version:refname
